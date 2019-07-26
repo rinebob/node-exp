@@ -1,0 +1,2 @@
+Yo dude this file was created by node.js
+Yo dude this text is different
