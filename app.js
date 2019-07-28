@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const yargs = require('yargs');
-const getNotes = require('./notes.js');
+// const getNotes = require('./notes.js');
+const notes = require('./notes.js');
 // const command = process.argv[2];
 
 // if (command === 'add') {
@@ -30,32 +31,49 @@ yargs.command({
 			type: 'string'
 		}
 	},
-	handler: function (argv) {
-		console.log("Yo new title dude: ", argv.title);
-		console.log("Yo new body dude: ", argv.body);
-		// console.log('Adding a new note dude!', argv);
+	// handler: function (argv) {
+	// 	notes.addNote(argv.title, argv.body);
+	// }
+	handler(argv) {
+		notes.addNote(argv.title, argv.body);
 	}
 })
 
 yargs.command({
 	command: 'remove',
 	describe: 'Ok remove the effin note dude',
-	handler: function() {
-		console.log('Yo like removing the freakin note dude')
+	builder: {
+		title: {
+			describe: 'Hey like title for removing dude',
+			demandOption: true,
+			type: 'string'
+		},
+	},
+	// handler: function(argv) {
+	// 	notes.removeNote(argv.title);
+	// }
+	handler(argv) {
+		notes.removeNote(argv.title);
 	}
 })
 
 yargs.command({
 	command: 'list',
 	describe: 'like dude it\'s a list ok?',
-	handler: function() {
+	// handler: function() {
+	// 	console.log('Hey now!  List List List dude...')
+	// }
+	handler()  {
 		console.log('Hey now!  List List List dude...')
 	}
 })
 yargs.command({
 	command: 'read',
 	describe: 'like dude you can read your effin notes here',
-	handler: function() {
+	// handler: function() {
+	// 	console.log('Yo - dude can\'t you READ???')
+	// }
+	handler() {
 		console.log('Yo - dude can\'t you READ???')
 	}
 })
